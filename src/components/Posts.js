@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/postActions';
 
 function Posts() {
     //state management
@@ -6,14 +8,10 @@ function Posts() {
 
     //run at the beginning
     useEffect(() => {
-        async function fetchData() {
-           let data = await fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json());
-           setPosts(data);
-           return data;
-        }
-        fetchData();
+        console.log('Posts fetch');
+        fetchPosts();
     }, []);
-
+    
     console.log(posts);
 
     return (
@@ -29,4 +27,5 @@ function Posts() {
     )
 }
 
-export default Posts
+//connect Posts component to the store
+export default connect(null, { fetchPosts })(Posts);
