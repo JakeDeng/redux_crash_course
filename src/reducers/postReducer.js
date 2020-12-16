@@ -10,8 +10,14 @@ export default function(state = initialState, action){
         
         case FETCH_POSTS:
             return {
-                ...state,//spread operator, new state
+                ...state,//spread operator, keep the old state and change payload
                 items: action.payload
+            };
+        
+        case NEW_POST:
+            return {
+                ...state,
+                item: action.payload
             };
             
         default:

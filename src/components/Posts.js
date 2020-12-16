@@ -5,8 +5,13 @@ import { fetchPosts } from '../actions/postActions';
 
 class Posts extends Component {
 
+    //life cycle method
     componentWillMount() {
         this.props.fetchPosts();
+    }
+
+    static getDerivedStateFromProps(){
+
     }
 
     render(){
@@ -28,14 +33,16 @@ class Posts extends Component {
 //define component props types
 Posts.protoTypes = {
     fetchPosts: PropTypes.func.isRequired,
-    posts: PropTypes.array.isRequired
+    posts: PropTypes.array.isRequired,
+    newPost: PropTypes.object
 }
 
 //map state to props: get state from redux and map to the properties of the component
 const mapStateToProps = state => ({
     //state.posts is the name we give in root reducer
     //posts is the component property
-    posts: state.posts.items
+    posts: state.posts.items,
+    newPost: state.posts.item
 });
 
 //connect Posts component to the store
