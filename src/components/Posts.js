@@ -6,12 +6,15 @@ import { fetchPosts } from '../actions/postActions';
 class Posts extends Component {
 
     //life cycle method
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchPosts();
     }
 
-    static getDerivedStateFromProps(){
-
+    componentDidUpdate(){
+        if(this.props.newPost) {
+            console.log(this.props.newPost)
+            this.props.posts.unshift(this.props.newPost);
+        }
     }
 
     render(){
